@@ -1,60 +1,58 @@
-// const db = require('../models');
+const db = require('../models');
 
-// const index = (req, res) => {
-//     db.Game.find({}, (err, foundGames) => {
-//         if (err) console.log('Error in games#index:', err);
+const index = (req, res) => {
+    db.Post.find({}, (err, foundPosts) => {
+        if (err) console.log('Error in posts#index:', err);
         
-//         if(!foundGames.length) return res.status(200).json({ "message": "No games found in db" });
+        if(!foundPosts.length) return res.status(200).json({ "message": "No posts found in db" });
 
-//         if(!foundGames.length) return res.status(200).json({ "message": "No games found in db" });
+        res.status(200).json({ "posts": foundPosts });
+    });
+};
 
-//         res.status(200).json({ "games": foundGames });
-//     });
-// };
+const show = (req, res) => {
+    db.Post.findById(req.params.id, (err, foundPost) => {
+        if (err) console.log('Error in posts#show:', err);
 
-// const show = (req, res) => {
-//     db.Game.findById(req.params.id, (err, foundGame) => {
-//         if (err) console.log('Error in games#show:', err);
+        if(!foundPost) return res.status(200).json({ "message": "No Post with that id found in db" });
 
-//         if(!foundGame) return res.status(200).json({ "message": "No game with that id found in db" });
+        res.status(200).json({ "Post": foundPost });
+    });
+};
 
-//         res.status(200).json({ "game": foundGame });
-//     });
-// };
+const create = (req, res) => {
+    db.Post.create(req.body, (err, savedPost) => {
+        if (err) console.log('Error in posts#create:', err);
 
-// const create = (req, res) => {
-//     db.Game.create(req.body, (err, savedGame) => {
-//         if (err) console.log('Error in games#create:', err);
+        res.status(201).json({ "Post": savedPost });
+    });
+};
 
-//         res.status(201).json({ "game": savedGame });
-//     });
-// };
+const update = (req, res) => {
+    db.Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPost) => {
+        if (err) console.log('Error in posts#update:', err);
 
-// const update = (req, res) => {
-//     db.Game.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedGame) => {
-//         if (err) console.log('Error in games#update:', err);
+        if(!updatedPost) return res.status(200).json({ "message": "No Post with that id found in db" });
 
-//         if(!updatedGame) return res.status(200).json({ "message": "No game with that id found in db" });
+        res.status(200).json({ "Post": updatedPost });
+    });
+};
 
-//         res.status(200).json({ "game": updatedGame });
-//     });
-// };
+const destroy = (req, res) => {
+    db.Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
+        if (err) console.log('Error in posts#destroy:', err);
 
-// const destroy = (req, res) => {
-//     db.Game.findByIdAndDelete(req.params.id, (err, deletedGame) => {
-//         if (err) console.log('Error in games#destroy:', err);
+        if(!deletedPost) return res.status(200).json({ "message": "No post with that id found in db" });
 
-//         if(!deletedGame) return res.status(200).json({ "message": "No game with that id found in db" });
-
-//         res.status(200).json({ "game": deletedGame });
-//     });
-// };
+        res.status(200).json({ "Post": deletedPost });
+    });
+};
 
 
-// module.exports = {
-//     index,
-//     show,
-//     create,
-//     update,
-//     destroy,
-// };
+module.exports = {
+    index,
+    show,
+    create,
+    update,
+    destroy,
+};

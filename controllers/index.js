@@ -1,5 +1,5 @@
 module.exports = {
-    // games: require("./posts"),
+    posts: require("./posts"),
     auth: require("./auth"),
-    // user: require("./user"),
+    user: require("./user"),
 };

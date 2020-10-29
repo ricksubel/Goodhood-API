@@ -1,13 +1,12 @@
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-// const PostSchema = new Schema({
-//     title: String,
-//     publisher: String,
-//     coverArtUrl: String,
-//     completed: Boolean,
-// });
+const PostSchema = new Schema({
+    type: String,
+    city: String,
+    description: String,
+});
 
-// const Game = mongoose.model('Game', GameSchema);
+const Post = mongoose.model('Post', PostSchema);
 
-// module.exports = Game;
+module.exports = Post;

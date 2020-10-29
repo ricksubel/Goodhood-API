@@ -15,6 +15,6 @@ mongoose
     .catch((err) => console.log(`MongoDB connection error: ${err}`));
 
 module.exports = {
-    //   Game: require("./game"),
+    Post: require("./post"),
     User: require("./user"),
 };

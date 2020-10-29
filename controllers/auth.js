@@ -35,7 +35,8 @@ const login = async (req, res) => {
         const foundUser = await await db.User.findOne({ email: req.body.email });
 
     console.log(foundUser);
-
+    console.log(req.body);
+    
     if (!foundUser) {
         return res.send({ message: "Email or Password incorrect" });
     }

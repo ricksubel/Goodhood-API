@@ -4,17 +4,24 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
     {
         username: {
-        type: String,
-        required: true,
-        unique: true,
+            type: String,
+            required: true,
+            unique: true,
         },
         email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+            type: String,
+            required: true,
+            unique: true,
+            match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
         },
-        password: { type: String, required: true },
+        password: { 
+            type: String, 
+            required: true 
+        },
+        city: {
+            type: String,
+            required: true
+        },
     },
     { timestamps: true }
 );

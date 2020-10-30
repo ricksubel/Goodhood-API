@@ -14,6 +14,7 @@ app.use(cors());
 
 // middleware - API routes
 app.use("/api/v1/posts", routes.posts);
+app.use("/api/v1/cities", routes.cities);
 
 // Auth Routes
 app.use("/api/v1/auth", routes.auth);

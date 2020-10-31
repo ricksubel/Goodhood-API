@@ -4,6 +4,9 @@ const ctrl = require('../controllers');
 
 // routes
 router.get('/', ctrl.cities.index);
+
+router.get('/geodb', ctrl.cities.getGeodbCities);
+
 router.get('/:id', ctrl.cities.show);
 router.post('/', ctrl.cities.create);
 router.put('/:id', ctrl.cities.update);

@@ -1,4 +1,5 @@
 const db = require('../models');
+const unirest = require("unirest");
 
 const index = (req, res) => {
     db.City.find({}, (err, foundCities) => {
@@ -39,10 +40,34 @@ const destroy = (req, res) => {
     });
 };
 
+const getGeodbCities = (req, res) => {
+    const request = unirest("GET", "https://wft-geo-db.p.rapidapi.com/v1/geo/cities");
+    request.query({
+        "limit": "10",
+        "countryIds": "US",
+    });
+    
+    // TODO separate requests for pinpoint requests
+
+    request.headers({
+        "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+        "x-rapidapi-key": "aede35bf35mshc901c441b5b1ebap145231jsnbe0cd14a71d4",
+        "useQueryString": true
+    });
+
+
+    request.end(function (response) {
+        if (response.error) throw new Error(response.error);
+        console.log(response.body);
+        res.json({ "data": response.body});
+    });
+};
+
 module.exports = {
     index,
     show,
     create,
     update,
     destroy,
+    getGeodbCities,
 };

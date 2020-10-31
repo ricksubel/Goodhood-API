@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // POST Register Route
 const register = async (req, res) => {
+    console.log('help!', req.body)
   try {
     const foundUser = await db.User.findOne({ email: req.body.email });
 
@@ -17,11 +18,12 @@ const register = async (req, res) => {
     req.body.password = hash;
     // create user with req.body and hashed password
     const createdUser = await db.User.create({ ...req.body, password: hash });
-
+    console.log('here but lost');
     return res
         .status(201)
         .json({ status: 201, message: "success", createdUser });
     } catch (err) {
+        console.log(err);
         return res.status(500).json({
         status: 500,
         message: "Something went wrong. Please try again",

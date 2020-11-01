@@ -1,5 +1,5 @@
 const db = require('../models');
-// const unirest = require("unirest");
+const unirest = require("unirest");
 
 const index = (req, res) => {
     db.City.find({}, (err, foundCities) => {
@@ -10,9 +10,9 @@ const index = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.City.findById(req.params.id, (err, foundCity) => {
+    db.City.findById(req.params.name, (err, foundCity) => {
         if (err) console.log('Error in cities#show:', err);
-        if(!foundCity) return res.status(200).json({ "message": "No city with that id found in db" });
+        if(!foundCity) return res.status(200).json({ "message": "No city with that name found in db" });
         res.status(200).json({ "City": foundCity });
     });
 };
@@ -42,52 +42,28 @@ const destroy = (req, res) => {
 
 
 // OUTSIDE API INFO
-// const getCityNames = (req, res) => {
-//     const request = unirest("GET", "https://referential.p.rapidapi.com/v1/city");
-//     request.query({
-//         "fields": "iso_a2%2Cstate_code%2Cstate_hasc%2Cvalue",
-//         "iso_a2": "us",
-//         "lang": "en"
-//     });
+const refApi = (req, res) => {
+    const request = unirest("GET", "https://referential.p.rapidapi.com/v1/city");
+    request.query({
+        "fields": "iso_a2%2Cstate_code%2Cstate_hasc%2Cvalue",
+        "iso_a2": "us",
+        "lang": "en"
+    });
 
-//     // TODO separate requests for pinpoint requests
+    // TODO separate requests for pinpoint requests
 
-//     request.headers({
-//         "x-rapidapi-host": "referential.p.rapidapi.com",
-//         "x-rapidapi-key": "12204c1023msh311d9a65c5d539dp14f508jsn1182071adc77",
-//         "useQueryString": true
-//     });
+    request.headers({
+        "x-rapidapi-host": "referential.p.rapidapi.com",
+        "x-rapidapi-key": "12204c1023msh311d9a65c5d539dp14f508jsn1182071adc77",
+        "useQueryString": true
+    });
 
-//     request.end(function (res) {
-//         if (response.error) throw new Error(response.error);
-//         console.log(response.body);
-//         res.json({ "data": response.body});
-//     });
-// };
-
-// OPTION 2
-// const getGeodbCities = (req, res) => {
-//     const request = unirest("GET", "https://wft-geo-db.p.rapidapi.com/v1/geo/cities");
-//     request.query({
-//         "limit": "10",
-//         "countryIds": "US",
-//     });
-    
-//     // TODO separate requests for pinpoint requests
-
-//     request.headers({
-//         "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-//         "x-rapidapi-key": "aede35bf35mshc901c441b5b1ebap145231jsnbe0cd14a71d4",
-//         "useQueryString": true
-//     });
-
-
-//     request.end(function (response) {
-//         if (response.error) throw new Error(response.error);
-//         console.log(response.body);
-//         res.json({ "data": response.body});
-//     });
-// };
+    request.end(function (res) {
+        if (response.error) throw new Error(response.error);
+        console.log(response.body);
+        res.json({ "data": response.body});
+    });
+};
 
 
 // EXPORTS 
@@ -97,6 +73,5 @@ module.exports = {
     create,
     update,
     destroy,
-    // getCityNames,
-    // getGeodbCities,
+    refApi,
 };

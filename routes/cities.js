@@ -11,9 +11,7 @@ router.delete('/:id', ctrl.cities.destroy);
 
 
 // API routes
-// router.get('/getCity', ctrl.cities.getCityNames);
-// router.get('/geodb', ctrl.cities.getGeodbCities);
-
+router.get('/refApi', ctrl.cities.refApi);
 
 // exports
 module.exports = router;

@@ -10,8 +10,5 @@ router.put('/:id', ctrl.cities.update);
 router.delete('/:id', ctrl.cities.destroy);
 
 
-// API routes
-router.get('/refApi', ctrl.cities.refApi);
-
 // exports
 module.exports = router;

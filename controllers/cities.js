@@ -41,31 +41,6 @@ const destroy = (req, res) => {
 };
 
 
-// OUTSIDE API INFO
-const refApi = (req, res) => {
-    const request = unirest("GET", "https://referential.p.rapidapi.com/v1/city");
-    request.query({
-        "fields": "iso_a2%2Cstate_code%2Cstate_hasc%2Cvalue",
-        "iso_a2": "us",
-        "lang": "en"
-    });
-
-    // TODO separate requests for pinpoint requests
-
-    request.headers({
-        "x-rapidapi-host": "referential.p.rapidapi.com",
-        "x-rapidapi-key": "12204c1023msh311d9a65c5d539dp14f508jsn1182071adc77",
-        "useQueryString": true
-    });
-
-    request.end(function (res) {
-        if (response.error) throw new Error(response.error);
-        console.log(response.body);
-        res.json({ "data": response.body});
-    });
-};
-
-
 // EXPORTS 
 module.exports = {
     index,
@@ -73,5 +48,4 @@ module.exports = {
     create,
     update,
     destroy,
-    refApi,
 };

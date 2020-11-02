@@ -1,12 +1,12 @@
-// const db = require('./models');
-// const data = require('./gameData.json');
+const db = require('./models');
+const data = require('./cityData.json');
 
-// db.Game.deleteMany({}, (err, deletedGames) => {
-//     db.Game.create(data.games, (err, seededGames) => {
-//         if (err) console.log(err);
+db.City.deleteMany({}, (err, deletedCities) => {
+    db.City.create(data.Cities, (err, seededCities) => {
+        if (err) console.log(err);
         
-//         console.log(data.games.length, 'games created successfully');
-        
-//         process.exit();
-//     });
-// });
+        console.log('Cities created successfully');
+            
+        process.exit();
+    });
+});

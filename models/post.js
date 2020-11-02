@@ -9,7 +9,9 @@ const PostSchema = new Schema({
     message: { type:String, required:true },
     date: { type: Date, default:Date.now },
     comments: [{ body: String, date: Date }],
-});
+    },
+    { timestamps: true }
+);
 
 
 const Post = mongoose.model('Post', PostSchema);

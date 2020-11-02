@@ -20,6 +20,7 @@ const create = (req, res) => {
     db.Post.create(req.body, (err, savedPost) => {
         if (err) console.log('Error in posts#create:', err);
         res.status(201).json({ "Post": savedPost });
+        console.log("create new post!")
     });
 };
 

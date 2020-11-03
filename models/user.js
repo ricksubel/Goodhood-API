@@ -3,36 +3,20 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
+        username: { type: String, required: true, unique: true,
         },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+        email: { type: String, required: true, unique: true, match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
         },
-        password: { 
-            type: String, 
-            required: true 
+        password: { type: String, required: true 
         },
-        city: {
-            type: String,
-            required: true
+        city: { type: String, required: true
         },
-        posts:{
-            type: Schema.Types.ObjectId, 
-            ref: "Post"
+        posts:{ type: Schema.Types.ObjectId, ref: "Post"
         },
-        comments: { 
-            type: Schema.Types.ObjectId, 
-            ref: "Comment" 
+        comments: { type: Schema.Types.ObjectId, ref: "Comment" 
         },
         date: { 
-            type: Date, 
-            default:Date.now 
+            type: Date, default:Date.now 
         },
     },
     { timestamps: true }

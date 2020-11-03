@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
+    user: { type: mongoose.Schema.ObjectId, ref: 'User'},
     category: { type:String, required:true },
     tags:String,
     city: { type:String, required:true },

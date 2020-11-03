@@ -18,7 +18,6 @@ const register = async (req, res) => {
     req.body.password = hash;
     // create user with req.body and hashed password
     const createdUser = await db.User.create({ ...req.body, password: hash });
-    console.log('here but lost');
     return res
         .status(201)
         .json({ status: 201, message: "success", createdUser });
@@ -35,7 +34,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const foundUser = await await db.User.findOne({ email: req.body.email });
-
     console.log(foundUser);
     console.log(req.body);
     

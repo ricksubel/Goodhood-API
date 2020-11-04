@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CitySchema = new mongoose.Schema({
-    city:{ type: mongoose.Schema.ObjectId, ref: 'City'},
+const CitySchema = new Schema({
+    city:{ type:String },
     state:{ type:String },
-    posts: [{type: Schema.Types.ObjectId, ref: "Post"}],
+    // posts: [{type: Schema.Types.ObjectId, ref: "Post"}],
 //     resources: [{
 //         physicalHealth: {link: String},
 //         mentalHealth: {link: String},

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     user: { type: mongoose.Schema.ObjectId, ref: 'User'},
     category: { type:String, required:true },
-    tags:String,
+    tags:{ type:String },
     city: { type:String, required:true },
     title: { type:String, required:true },
     message: { type:String, required:true },

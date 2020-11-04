@@ -9,12 +9,19 @@ const userSchema = new Schema(
         },
         password: { type: String, required: true 
         },
+        // TODO image field
+        // img: 
+        // {
+        //     data: Buffer,
+        //     contentType: String
+        // },
         city: { type: String, required: true
         },
-        posts:{ type: Schema.Types.ObjectId, ref: "Post"
-        },
-        comments: { type: Schema.Types.ObjectId, ref: "Comment" 
-        },
+        posts:[{ type: Schema.Types.ObjectId, ref: "Post"
+        }],
+        // TODO make work!
+        // comments: { type: Schema.Types.ObjectId, ref: "Comment" 
+        // },
         date: { 
             type: Date, default:Date.now 
         },

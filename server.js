@@ -12,6 +12,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+
+// TODO what do I need?
+// app.use(bodyParser.urlencoded({ extended: false })) 
+// app.use(bodyParser.json())
+
+
 // middleware - API routes
 app.use("/api/v1/posts", routes.posts);
 app.use("/api/v1/cities", routes.cities);

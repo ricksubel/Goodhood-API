@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const connectionString =
     process.env.MONGODB_URI || "mongodb://localhost:27017/goodhood";
+    console.log(connectionString, 'this is connection string');
     const configOptions = {
     useNewUrlParser: true,
     useCreateIndex: true,

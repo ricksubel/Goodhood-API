@@ -13,8 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 
-
-// TODO what do I need?
+// TODO Do I need these for image uploading???
 // app.use(bodyParser.urlencoded({ extended: false })) 
 // app.use(bodyParser.json())
 

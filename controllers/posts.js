@@ -2,7 +2,7 @@ const db = require('../models');
 
 const index = (req, res) => {
     db.User.findById(req.userId, (err, foundUser) => {
-        db.Post.find({ city:foundUser.city }, (err, foundPosts) => {
+        db.Post.find((err, foundPosts) => {
         // db.Post.find({ city:foundUser.city }).sort('-date').exec((err, foundPosts) => {
         // filter/sort by tags
             if (err) console.log('Error in posts#index:', err);    
@@ -36,13 +36,14 @@ const create = (req, res) => {
 
 const update = (req, res) => {
     console.log(req.userId, 'user edit post')
-    db.Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPost) => {
+    db.Post.findByIdAndUpdate(req.params.id, {$set:{...req.body}}, {new: true}, (err, updatedPost) => {
         if (err) console.log('Error in posts#update:', err);
         if(!updatedPost) return res.status(200).json({ "message": "No Post with that id found in db" });
         res.status(200).json({ "Post": updatedPost });
         console.log("Updated post!")
     });
 };
+
 
 const destroy = (req, res) => {
     console.log(req.userId, 'user delete post')

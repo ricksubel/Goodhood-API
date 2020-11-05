@@ -23,7 +23,7 @@ const userSchema = new Schema(
         // comments: { type: Schema.Types.ObjectId, ref: "Comment" 
         // },
         date: { 
-            type: Date, default:Date.now 
+            type: Date, default:Date.year 
         },
     },
     { timestamps: true }
